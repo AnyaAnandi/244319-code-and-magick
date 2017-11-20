@@ -1,4 +1,4 @@
-window.renderStatistics = function (ctx, names, times) {
+  window.renderStatistics = function (ctx, names, times) {
 
   var gradient = ctx.createLinearGradient(100, 10, 420, 270);
   gradient.addColorStop(0, 'green');
@@ -61,26 +61,28 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fill();
 
 
-// как сделать тень только на мою фигуру???
+  // как сделать тень только на мою фигуру???
 
   ctx.fillStyle = '#000';
   ctx.font = '16px PT Mono';
   ctx.fillText('Ура вы победили!', 135, 45);
   ctx.fillText('Список результатов:', 135, 65);
 
-// если выношу функцию в самый верх кода, до window. ...., то она не работает
-// и почему она сразу не работает если пишу function(times) ????
+  // если выношу функцию в самый верх кода, до window. ...., то она не работает
+  // и почему она сразу не работает если пишу function(times) ????
 
   var findMaxTime = function (arr) {
     var maxTime = 0;
-      for (var i = 0 ; i < arr.length; i++) {
-        var time = arr[i];
-        if (time > maxTime) {
-          maxTime = time;
-          maxTimeIndex = i; }
+    var maxTimeIndex = 0;
+    for (var i = 0 ; i < arr.length; i++){
+      var time = arr[i];
+      if (time > maxTime) {
+        maxTime = time;
+        maxTimeIndex = i;
+      }
     }
     return maxTime;
-  };
+    };
   findMaxTime(times);
   console.log(times);
 
@@ -116,14 +118,12 @@ window.renderStatistics = function (ctx, names, times) {
 //как сделать случайную прозрачность?
 
   for (var i = 0; i < names.length; i++) {
-    if (names[i] == 'Вы') {
+    if (names[i] === value) {
 
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
       } else {
         ctx.fillStyle = 'randColor';}
   };
-
-
   };
 
 
