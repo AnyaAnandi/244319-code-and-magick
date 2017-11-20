@@ -1,4 +1,5 @@
-  window.renderStatistics = function (ctx, names, times) {
+'use strict';
+window.renderStatistics = function (ctx, names, times) {
 
   var gradient = ctx.createLinearGradient(100, 10, 420, 270);
   gradient.addColorStop(0, 'green');
@@ -73,18 +74,18 @@
 
   var findMaxTime = function (arr) {
     var maxTime = 0;
-    var maxTimeIndex = 0;
-    for (var i = 0 ; i < arr.length; i++){
+    /* var maxTimeIndex = 0; */
+    for (var i = 0; i < arr.length; i++) {
       var time = arr[i];
       if (time > maxTime) {
         maxTime = time;
-        maxTimeIndex = i;
+        /* maxTimeIndex = i; */
       }
     }
     return maxTime;
-    };
+  };
   findMaxTime(times);
-  console.log(times);
+  /* console.log(times); */
 
   var histogramHeight = 150;
   var step = histogramHeight / (findMaxTime(times) - 0);
@@ -98,32 +99,33 @@
 
   for (var j = 0; j < times.length; j++) {
     ctx.fillRect(startX + margin * j, startY, barWidth, -times[j] * step);
-    ctx.fillText(names[j], startX+ margin * j, startY + lineHeight);
-    ctx.fillText(Math.round(times[j]), startX + margin * j, startY - histogramHeight - lineHeight/2);
+    ctx.fillText(names[j], startX + margin * j, startY + lineHeight);
+    ctx.fillText(Math.round(times[j]), startX + margin * j, startY - histogramHeight - lineHeight / 2);
 
-  };
-  console.log(names);
+  }
+  /* console.log(names); */
 
-//ниже код не красит, я всю голову сломала - по дебагеру все работает
-// а по факту не красит нужный прямоугольник
+  // ниже код не красит, я всю голову сломала - по дебагеру все работает
+  // а по факту не красит нужный прямоугольник
 
-  var randColor = function() {
+  /* var randColor = function () {
     var r = Math.floor(Math.random() * (256)),
-        g = Math.floor(Math.random() * (256)),
-        b = Math.floor(Math.random() * (256));
+      g = Math.floor(Math.random() * (256)),
+      b = Math.floor(Math.random() * (256));
     return '#' + r.toString(16) + g.toString(16) + b.toString(16);
   }
-  console.log(randColor());
+   console.log(randColor()); */
 
-//как сделать случайную прозрачность?
+  // как сделать случайную прозрачность?
 
   for (var i = 0; i < names.length; i++) {
     if (names[i] === value) {
 
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-      } else {
-        ctx.fillStyle = 'randColor';}
-  };
-  };
+    } else {
+      ctx.fillStyle = 'randColor';
+    }
+  }
+};
 
 
