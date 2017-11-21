@@ -71,21 +71,26 @@ window.renderStatistics = function (ctx, names, times) {
   var lineHeight = 20;
   var value = 'Вы';
 
-  for (var j = 0; j < times.length && j < names.length; j++) {
 
-    if (names[j] === value) {
+  function drawBars(arr, arr1) {
+    for (var j = 0; j < arr.length && j < arr1.length; j++) {
 
-      ctx.fillStyle = 'rgb(255, 0, 0)';
-      ctx.globalAlpha = 1;
-    } else {
-      ctx.fillStyle = 'rgb(0, 0, 250)';
-      ctx.globalAlpha = getRandomOpacity(0.1, 1);
+      if (arr1[j] === value) {
+
+        ctx.fillStyle = 'rgb(255, 0, 0)';
+        ctx.globalAlpha = 1;
+      } else {
+        ctx.fillStyle = 'rgb(0, 0, 250)';
+        ctx.globalAlpha = getRandomOpacity(0.1, 1);
+      }
+
+      ctx.fillRect(startX + margin * j, startY, barWidth, -arr[j] * step);
+      ctx.fillText(arr1[j], startX + margin * j, startY + lineHeight);
+      ctx.fillText(Math.round(arr[j]), startX + margin * j, startY - histogramHeight - lineHeight / 2);
+
     }
-
-    ctx.fillRect(startX + margin * j, startY, barWidth, -times[j] * step);
-    ctx.fillText(names[j], startX + margin * j, startY + lineHeight);
-    ctx.fillText(Math.round(times[j]), startX + margin * j, startY - histogramHeight - lineHeight / 2);
-
   }
+  drawBars(times, names);
+
 };
 
